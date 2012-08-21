@@ -8,7 +8,7 @@
       d:DesignHeight="768"
       d:DesignWidth="1366"
       DataContext="{Binding Main, Source={StaticResource Locator}}">
-    
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,13 +17,17 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock FontSize="56"
-                   Text="{Binding WelcomeTitle}"
+                   Text="{Binding Path=WelcomeTitle}"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
                    FontFamily="Segoe UI Light" 
                    Margin="120,49,0,0" />
+        <StackPanel Orientation="Horizontal">
+            <TextBox Name="NameTextBox" MinWidth="300"></TextBox>
+            <Button Command="{Binding MyCommand, Mode=OneWay}" CommandParameter="{Binding Text, ElementName=NameTextBox}">Click me</Button>
+        </StackPanel>
 
-    </Grid>
+    </StackPanel>
 </Page>

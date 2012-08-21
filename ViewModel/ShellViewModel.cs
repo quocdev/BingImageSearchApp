@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using BingImageSearchApp.Model;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace BingImageSearchApp.ViewModel
 {
@@ -19,7 +21,6 @@ namespace BingImageSearchApp.ViewModel
         /// <summary>
         /// The <see cref="WelcomeTitle" /> property's name.
         /// </summary>
-        public const string WelcomeTitlePropertyName = "WelcomeTitle";
 
         private string _welcomeTitle = string.Empty;
 
@@ -42,7 +43,7 @@ namespace BingImageSearchApp.ViewModel
                 }
 
                 _welcomeTitle = value;
-                RaisePropertyChanged(WelcomeTitlePropertyName);
+                RaisePropertyChanged("WelcomeTitle");
             }
         }
 
@@ -65,11 +66,30 @@ namespace BingImageSearchApp.ViewModel
                 });
         }
 
+        private ICommand _myCommand;
+
+        /// <summary>
+        /// Gets the MyCommand.
+        /// </summary>
+        public ICommand MyCommand
+        {
+            get
+            {
+                return _myCommand
+                    ?? (_myCommand = new RelayCommand<object>(this.ExecuteTestCommand));
+            }
+        }
+
         ////public override void Cleanup()
         ////{
         ////    // Clean up if needed
 
         ////    base.Cleanup();
         ////}
+
+        private void ExecuteTestCommand(object param)
+        {
+            this.WelcomeTitle = param.ToString();
+        }
     }
 }

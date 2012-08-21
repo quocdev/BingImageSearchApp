@@ -72,6 +72,7 @@ namespace BingImageSearchApp
             }
 
             // Place the frame in the current Window and ensure that it is active
+
             Window.Current.Content = rootFrame;
             Window.Current.Activate();
 
